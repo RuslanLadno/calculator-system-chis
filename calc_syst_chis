@@ -1,0 +1,24 @@
+# калькулятор систем счисления
+
+systema_chis = int(input('В какую систему счисления ты хочешь перевести число?\n'))
+my_systema = int(input('В какой системе ты вводишь число?\n'))
+number = input('Введи само число:\n')
+
+def translates(system, num, my_systema):
+    if 2 <= my_systema <= 36 and 2 <= system <= 36:
+        num_new = int(num, my_systema)
+    else:
+        return 'Такой системы счисления не существует'
+    res = ''
+    all_sys = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    if num_new >= 0:
+        if num_new == 0:
+            return str(num_new)
+        while num_new != 0:
+            res += all_sys[num_new % system]
+            num_new //= system
+        return res[::-1]
+    else:
+        return 'твоё число должно быть больше или равно нулю, попробуй ещё раз'
+
+print(translates(systema_chis, number, my_systema))
